@@ -1,5 +1,5 @@
 """
-Models for posts
+Admin view for posts
 """
 # Imports Internal
 from .models import Post
