@@ -4,6 +4,7 @@ Views for profiles
 # Imports Internal
 from .models import Profile
 from .serializers import ProfileSerializer
+from ci_pp5_nexus_drf.permissions import IsOwnerOrReadOnly
 # -----------------------------------------------------------------------
 # Third Party
 from rest_framework.views import APIView
@@ -19,7 +20,11 @@ class ProfileList(APIView):
     """
     def get(self, request):
         profiles = Profile.objects.all()
-        serializer = ProfileSerializer(profiles, many=True)
+        serializer = ProfileSerializer(
+            profiles,
+            many=True,
+            context={'request': request}
+            )
         return Response(serializer.data)
 
 
@@ -29,6 +34,7 @@ class ProfileDetail(APIView):
     -   Lists a user's profile
     """
     serializer_class = ProfileSerializer
+    permission_classes = [IsOwnerOrReadOnly]
 
     def get_object(self, pk):
         """
@@ -36,6 +42,10 @@ class ProfileDetail(APIView):
         """
         try:
             profile = Profile.objects.get(pk=pk)
+            self.check_object_permissions(
+                self.request,
+                profile
+                )
             return profile
         except Profile.DoesNotExist:
             raise Http404
@@ -45,7 +55,10 @@ class ProfileDetail(APIView):
         Function to return serialized profile data
         """
         profile = self.get_object(pk)
-        serializer = ProfileSerializer(profile)
+        serializer = ProfileSerializer(
+            profile,
+            context={'request': request}
+            )
         return Response(serializer.data)
 
     def put(self, request, pk):
@@ -53,7 +66,11 @@ class ProfileDetail(APIView):
         Function to update a profile by its id
         """
         profile = self.get_object(pk)
-        serializer = ProfileSerializer(profile, data=request.data)
+        serializer = ProfileSerializer(
+            profile,
+            data=request.data,
+            context={'request': request}
+            )
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
