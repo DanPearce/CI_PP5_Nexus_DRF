@@ -26,12 +26,18 @@ class PostList(generics.ListCreateAPIView):
         comments_count=Count('comment', distinct=True)
     ).order_by('-created_on')
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        filters.SearchFilter,
+    ]
+    search_fields = [
+        'owner__username',
+        'title',
+        'body',
     ]
     ordering_fields = [
         'likes_count',
         'comments_count',
-        'likes__created_on'
+        'likes__created_on',
     ]
 
     def perform_create(self, serializer):
