@@ -1,26 +1,26 @@
 """
-Models for likes
+Models for followers
 """
-# Imports Internal
-from posts.models import Post
+# Imports
 # -----------------------------------------------------------------------
 # Third Party
 from django.db import models
 from django.contrib.auth.models import User
 
 
-class Like(models.Model):
+class Follower(models.Model):
     """
-    This class is used to define the model parameters for likes.
-    -   Directly related to User and post
+    This class is used to define the model parameters for followers.
+    -   Directly related to User and 'followed' User
     """
     owner = models.ForeignKey(
         User,
+        related_name='following',
         on_delete=models.CASCADE
         )
-    post = models.ForeignKey(
-        Post,
-        related_name='likes',
+    followed = models.ForeignKey(
+        User,
+        related_name='followed',
         on_delete=models.CASCADE
         )
     created_on = models.DateTimeField(
@@ -30,13 +30,13 @@ class Like(models.Model):
     class Meta:
         """
         Ordering based on created_on time/date
-        -   'unique_together' is used to prevent duplication of likes
+        -   'unique_together' is used to prevent duplication of follows
         """
         ordering = ['-created_on']
-        unique_together = ['owner', 'post']
+        unique_together = ['owner', 'followed']
 
     def __str__(self):
         """
-        This function returns the which post a user has liked
+        This function returns which user has followed another
         """
-        return f'{self.owner} has liked {self.post}'
+        return f'{self.owner} followed {self.followed}'
