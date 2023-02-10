@@ -7,7 +7,8 @@ from .serializers import PostSerializer
 from ci_pp5_nexus_drf.permissions import IsOwnerOrReadOnly
 # -----------------------------------------------------------------------
 # Third Party
-from rest_framework import generics, permissions
+from django.db.models import Count
+from rest_framework import generics, permissions, filters
 
 
 class PostList(generics.ListCreateAPIView):
@@ -20,7 +21,18 @@ class PostList(generics.ListCreateAPIView):
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
     ]
-    queryset = Post.objects.all()
+    queryset = Post.objects.annotate(
+        likes_count=Count('likes', distinct=True),
+        comments_count=Count('comment', distinct=True)
+    ).order_by('-created_on')
+    filter_backends = [
+        filters.OrderingFilter
+    ]
+    ordering_fields = [
+        'likes_count',
+        'comments_count',
+        'likes__created_on'
+    ]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -34,4 +46,7 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Post.objects.all()
+    queryset = Post.objects.annotate(
+        likes_count=Count('likes', distinct=True),
+        comments_count=Count('comment', distinct=True)
+    ).order_by('-created_on')
