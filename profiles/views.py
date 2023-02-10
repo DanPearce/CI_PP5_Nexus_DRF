@@ -9,6 +9,7 @@ from ci_pp5_nexus_drf.permissions import IsOwnerOrReadOnly
 # Third Party
 from django.db.models import Count
 from rest_framework import generics, filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class ProfileList(generics.ListAPIView):
@@ -23,7 +24,11 @@ class ProfileList(generics.ListAPIView):
     ).order_by('-created_on')
     serializer_class = ProfileSerializer
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        DjangoFilterBackend,
+    ]
+    filterset_fields = [
+        'owner__following__followed__profile',
     ]
     ordering_fields = [
         'posts_count',
