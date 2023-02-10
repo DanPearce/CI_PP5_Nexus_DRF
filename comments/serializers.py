@@ -36,4 +36,4 @@ class CommentDetailSerlizer(CommentSerializer):
     """
     Class based serialiser for the comment model, in detail view
     """
-    post = serializers.ReadOnlyField(soruce='post.id')
+    post = serializers.ReadOnlyField(source='post.id')
