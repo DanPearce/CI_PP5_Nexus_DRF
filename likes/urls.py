@@ -1,13 +1,13 @@
 """
-Urls for comments
+Urls for likes
 """
 # Imports Internal
-from comments import views
+from likes import views
 # -----------------------------------------------------------------------
 # Third Party
 from django.urls import path
 
 urlpatterns = [
-    path('comments/', views.CommentList.as_view()),
-    path('comments/<int:pk>', views.CommentDetail.as_view()),
+    path('likes/', views.LikeList.as_view()),
+    path('likes/<int:pk>', views.LikeDetail.as_view()),
 ]

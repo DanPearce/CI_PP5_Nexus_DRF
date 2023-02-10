@@ -4,10 +4,10 @@ Views for comments
 # Imports Internal
 from .models import Comment
 from .serializers import CommentSerializer, CommentDetailSerlizer
+from ci_pp5_nexus_drf.permissions import IsOwnerOrReadOnly
 # -----------------------------------------------------------------------
 # Third Party
 from rest_framework import generics, permissions
-from ci_pp5_nexus_drf.permissions import IsOwnerOrReadOnly
 
 
 class CommentList(generics.ListCreateAPIView):

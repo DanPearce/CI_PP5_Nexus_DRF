@@ -9,7 +9,7 @@ from django.db import IntegrityError
 from rest_framework import serializers
 
 
-class LikeSerializers(serializers.ModelSerializer):
+class LikeSerializer(serializers.ModelSerializer):
     """
     Class based serializer for Like data
     """
