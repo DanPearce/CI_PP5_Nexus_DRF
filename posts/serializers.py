@@ -2,7 +2,8 @@
 Serializers for posts
 """
 # Imports Internal
-from posts.models import Post
+from .models import Post
+from likes.models import Like
 # -----------------------------------------------------------------------
 # Third Party
 from rest_framework import serializers
@@ -18,6 +19,7 @@ class PostSerializer(serializers.ModelSerializer):
     profile_image = serializers.ReadOnlyField(
         source='owner.profile.image.url'
         )
+    like_id = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         """
@@ -48,9 +50,22 @@ class PostSerializer(serializers.ModelSerializer):
                 f'Sorry, the image size is larger than {FILE_LIMIT} MB.'
             )
 
+    def get_like_id(self, obj):
+        """
+        Function to check if authenticated user liked a post.
+        -   Populates id if logged in & liked.
+        """
+        user = self.context['request'].user
+        if user.is_authenticated:
+            like = Like.objects.filter(
+                owner=user, post=obj
+            ).first()
+            return like.id if like else None
+        return None
+
     class Meta:
         model = Post
         fields = [
             'id', 'owner', 'title', 'body', 'created_on', 'updated_on',
-            'image', 'is_owner', 'profile_id', 'profile_image',
+            'image', 'is_owner', 'profile_id', 'profile_image', 'like_id',
         ]
