@@ -7,71 +7,24 @@ from .serializers import ProfileSerializer
 from ci_pp5_nexus_drf.permissions import IsOwnerOrReadOnly
 # -----------------------------------------------------------------------
 # Third Party
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from django.http import Http404
-from rest_framework import status
+from rest_framework import generics
 
 
-class ProfileList(APIView):
+class ProfileList(generics.ListAPIView):
     """
     Class based view for Profile List
     -   Lists all profiles
     """
-    def get(self, request):
-        profiles = Profile.objects.all()
-        serializer = ProfileSerializer(
-            profiles,
-            many=True,
-            context={'request': request}
-            )
-        return Response(serializer.data)
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
 
 
-class ProfileDetail(APIView):
+class ProfileDetail(generics.RetrieveUpdateAPIView):
     """
     Class based view for Profile Detail
-    -   Lists a user's profile
+    -   Allows us to see the full profile detail
+    -   Allows us to modify a profile if authenticated.
     """
     serializer_class = ProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
-
-    def get_object(self, pk):
-        """
-        Function to get profile object by its id (Primary Key)
-        """
-        try:
-            profile = Profile.objects.get(pk=pk)
-            self.check_object_permissions(
-                self.request,
-                profile
-                )
-            return profile
-        except Profile.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk):
-        """
-        Function to return serialized profile data
-        """
-        profile = self.get_object(pk)
-        serializer = ProfileSerializer(
-            profile,
-            context={'request': request}
-            )
-        return Response(serializer.data)
-
-    def put(self, request, pk):
-        """
-        Function to update a profile by its id
-        """
-        profile = self.get_object(pk)
-        serializer = ProfileSerializer(
-            profile,
-            data=request.data,
-            context={'request': request}
-            )
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    queryset = Profile.objects.all()
