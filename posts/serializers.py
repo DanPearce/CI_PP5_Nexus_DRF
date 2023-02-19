@@ -51,6 +51,7 @@ class PostSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 f'Sorry, the image size is larger than {FILE_LIMIT} MB.'
             )
+        return value
 
     def get_like_id(self, obj):
         """
