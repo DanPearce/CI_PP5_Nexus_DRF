@@ -61,3 +61,25 @@ The User Model comes installed with the Django AllAuth Library and is used to co
 #### Likes
 - Fields (owner, post, created_on)
 - Has a ForeignKey relationship with User, id and Posts, id.
+
+## Technologies
+### Languages
+- [Python](https://www.python.org/)
+- [Django](https://www.djangoproject.com/)
+
+### Libraries, Frameworks and Other Technologies
+- [Django](https://www.djangoproject.com) - This side of the project has been created using django .
+- [Cloudinary](https://cloudinary.com/) - Used to host the images used on the site.
+- [Git](https://git-scm.com/) - Used to implement version control within the project.
+- [GitHub](https://github.com/) Used to host my code.
+- [GitPod](https://www.gitpod.io/) Used to build my code online.
+- [VS Code](https://code.visualstudio.com) - Used occasionally to build the code offline.
+- [Heroku](https://dashboard.heroku.com/) - Used to host the live version of the site.
+- [Psycopg2](https://www.psycopg.org/docs/) Used to create the database on the development version of the site.
+- [ElephantSQL](https://www.elephantsql.com/) - Used to host the database for the live site.
+- [DB Diagram.io](https://dbdiagram.io/) - Used to create the diagrams used for the models.
+- [PyCodeStyle](https://pypi.org/project/pycodestyle/) - Used to validate the Python code.
+- [Python](https://www.python.org/) - Code written in python.
+- [Django REST Framework](https://www.django-rest-framework.org/) used for the creation of the API.
+- [Django AllAuth](https://django-allauth.readthedocs.io/en/latest/index.html) used for user authenticaion/creation.
+
