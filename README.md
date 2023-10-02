@@ -6,6 +6,7 @@ Developed by, [Dan Pearce](https://danpearce.software/)
 The Nexus DRF API has been built for the purposes of providing data to the Nexus application. The API project has been built using the Django REST Framework.
 
 [View the live Nexus application here](https://ci-pp5-nexus-danpearce.herokuapp.com/)
+
 [View the Nexus GitHub page here](https://github.com/DanPearce/CI_PP5_Nexus)
 
 ## Contents
@@ -130,3 +131,15 @@ As an Owner, I can log into the admin console, so that I can moderate the conten
 | Followers | Create and delete | Admin is able to create delete a new follower. | Works as intended. |
 | <details><summary>Followers Create</summary><img src="docs/testing/testing_add_follower_1.png"></details> <details><summary>Followers Create</summary><img src="docs/testing/testing_add_follower_2.png"></details><details><summary>Followers Delete</summary><img src="docs/testing/testing_delete_follower_1.png"></details> <details><summary>Followers Delete</summary><img src="docs/testing/testing_delete_follower_2.png"></details><details><summary>Followers Delete</summary><img src="docs/testing/testing_delete_follower_3.png"></details> | | | |
 
+## Credits
+### Code
+I learnt how to create this project using the code from my course with Code Institute. 
+[Moments DRF](https://github.com/Code-Institute-Solutions/drf-api)
+
+## Acknowledgements
+As always there are some people I would especially like to thank for their continued support throughout my coding journey.
+- Thank you to my mentor, Mo Shami, for providing me quality information in the past months.
+- Thank you to my partner, Harry for allowing me to have the time to continue my efforts.
+- Thank you to you, for taking the time to look at my work!
+
+#### [Back to Top](#contents)
