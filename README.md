@@ -31,3 +31,33 @@ During development, I used [DB SQLite which](https://www.sqlite.org/) which is t
 <details><summary>Diagram</summary>
 <img src="docs/nexus_drf/nexus_drf_database.png">
 </details>
+
+### Models
+
+#### Users
+The User Model comes installed with the Django AllAuth Library and is used to connect with various features of the application
+- Has a One to One Relationshop with Profiles; owner field.
+- Has a ForeignKey relationship with Followers; owner and followed feilds.
+- Has a ForeignKey relationship with Posts; owner field.
+- Has a ForeignKey relationship with Comments; owner field.
+- Has a ForeignKey relationship with Likes; owner field.
+
+#### Profiles
+- Fields (owner, name, about, created_on, updated_on, image)
+- Has a One to One relationship with User, id.
+
+#### Posts
+- Fields (owner, title, body, created_on, updated_on, image)
+- Has a ForeignKey relationship with Comments, post and Like, post.
+
+#### Followers
+- Fields (owner, followed, created_on)
+- Has a ForeignKey relationship with User, id.
+
+#### Comments
+- Fields (owner, post, body, created_on, updated_on)
+- Has a ForeignKey relationship with User, id and Posts, id.
+
+#### Likes
+- Fields (owner, post, created_on)
+- Has a ForeignKey relationship with User, id and Posts, id.
