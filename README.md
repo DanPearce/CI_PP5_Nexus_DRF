@@ -136,6 +136,9 @@ As an Owner, I can log into the admin console, so that I can moderate the conten
 I learnt how to create this project using the code from my course with Code Institute. 
 [Moments DRF](https://github.com/Code-Institute-Solutions/drf-api)
 
+### Images
+- [Default User Image](https://pixabay.com/vectors/blank-profile-picture-mystery-man-973460/) by [WandererCreative](https://pixabay.com/users/wanderercreative-855399/)
+
 ## Acknowledgements
 As always there are some people I would especially like to thank for their continued support throughout my coding journey.
 - Thank you to my mentor, Mo Shami, for providing me quality information in the past months.
