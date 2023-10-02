@@ -22,3 +22,12 @@ The DRF API has only one user story as the live API is only used for administrat
 1. USER STORY 3: User Authentication - Admin Moderation
   - As an Owner, I can log into the admin console, so that I can moderate the content on the site.
 
+## Database & Models
+### Database
+This project was built using a relational database allowing us to easily link aspects of the site with others.
+
+During development, I used [DB SQLite which](https://www.sqlite.org/) which is the default database to use for Django - and for production [ElephantSQL](https://www.elephantsql.com/) has been used and all data migrated during the deployment.
+
+<details><summary>Diagram</summary>
+<img src="docs/nexus_drf/nexus_drf_database.png">
+</details>
