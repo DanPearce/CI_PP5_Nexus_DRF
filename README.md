@@ -83,3 +83,50 @@ The User Model comes installed with the Django AllAuth Library and is used to co
 - [Django REST Framework](https://www.django-rest-framework.org/) used for the creation of the API.
 - [Django AllAuth](https://django-allauth.readthedocs.io/en/latest/index.html) used for user authenticaion/creation.
 
+## Validation and Testing
+### PyCodeStyle Valdidation
+All Python Code has been checked using the [PyCodeStyle](https://pypi.org/project/pycodestyle/) library. All code has been returned with no errors.
+
+<details><summary>All .py files</summary>
+<img src="docs/nexus_drf/nexus_drf_validation.png">
+</details>
+
+### Testing 
+#### Manual Testing
+As an Owner, I can log into the admin console, so that I can moderate the content on the site.
+
+| **Test** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+|------------------|-----------------|---------------------|--------------------|
+| User | Create, edit and delete | Admin is able to create, edit and delete a new user (Which makes a user profile). | Works as intended. |
+|<details><summary>User Create</summary><img src="docs/testing/testing_user_1.png"></details> <details><summary>User Create</summary><img src="docs/testing/testing_user_2.png"></details> | | | |
+
+| **Test** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+|------------------|-----------------|---------------------|--------------------|
+| User | Change user permissions | Admin is able to edit permissions for a user. | Works as intended. |
+| <details><summary>User Permissions</summary><img src="docs/testing/testing_permissons.png"></details> | | | |
+
+| **Test** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+|------------------|-----------------|---------------------|--------------------|
+| Profiles | Create and delete | Admin is able to create and delete a Profile. | Works as intended. |
+| <details><summary>Profiles Edit</summary><img src="docs/testing/testing_edit_profile.png"></details> <details><summary>Profiles Delete</summary><img src="docs/testing/testing_delete_profile_1.png"></details> <details><summary>Profiles Delete</summary><img src="docs/testing/testing_delete_profile_2.png"></details> <details><summary>Profiles Delete</summary><img src="docs/testing/testing_delete_profile_3.png"></details> | | | |
+
+| **Test** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+|------------------|-----------------|---------------------|--------------------|
+| Posts | Create, edit and delete | Admin is able to create, edit and delete a post. | Works as intended. |
+| <details><summary>Posts Create</summary><img src="docs/testing/testing_add_post.png"></details> <details><summary>Posts Edit</summary><img src="docs/testing/testing_edit_post.png"></details> <details><summary>Posts Delete</summary><img src="docs/testing/testing_deleting_post_1.png"></details> <details><summary>Posts Delete</summary><img src="docs/testing/testing_deleting_post_2.png"></details> <details><summary>Posts Delete</summary><img src="docs/testing/testing_deleting_post_3.png"></details> | | | |
+
+| **Test** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+|------------------|-----------------|---------------------|--------------------|
+| Comments | Create and delete | Admin is able to create, edit and delete a comment. | Works as intended. |
+| <details><summary>Comments Create</summary><img src="docs/testing/testing_add_comment_1.png"></details> <details><summary>Comments Create</summary><img src="docs/testing/testing_add_comment_2.png"></details> <details><summary>Comments Delete</summary><img src="docs/testing/testing_delete_comment_1.png"></details> <details><summary>Comments Delete</summary><img src="docs/testing/testing_delete_comment_2.png"></details> <details><summary>Comments Delete</summary><img src="docs/testing/testing_delete_comment_3.png"></details> | | | |
+
+| **Test** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+|------------------|-----------------|---------------------|--------------------|
+| Likes | Create and delete | Admin is able to create and delete a like. | Works as intended. |
+| <details><summary>Likes Create</summary><img src="docs/testing/testing_add_like_1.png"></details> <details><summary>Likes Create</summary><img src="docs/testing/testing_add_like_2.png"></details> <details><summary>Likes Delete</summary><img src="docs/testing/testing_delete_comment_1.png"></details><details><summary>Likes Delete</summary><img src="docs/testing/testing_delete_comment_2.png"></details><details><summary>Likes Delete</summary><img src="docs/testing/testing_delete_comment_3.png"></details> | | | |
+
+| **Test** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+|------------------|-----------------|---------------------|--------------------|
+| Followers | Create and delete | Admin is able to create delete a new follower. | Works as intended. |
+| <details><summary>Followers Create</summary><img src="docs/testing/testing_add_follower_1.png"></details> <details><summary>Followers Create</summary><img src="docs/testing/testing_add_follower_2.png"></details><details><summary>Followers Delete</summary><img src="docs/testing/testing_delete_follower_1.png"></details> <details><summary>Followers Delete</summary><img src="docs/testing/testing_delete_follower_2.png"></details><details><summary>Followers Delete</summary><img src="docs/testing/testing_delete_follower_3.png"></details> | | | |
+
