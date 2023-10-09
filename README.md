@@ -40,8 +40,8 @@ During development, I used [DB SQLite which](https://www.sqlite.org/) which is t
 
 #### Users
 The User Model comes installed with the Django AllAuth Library and is used to connect with various features of the application
-- Has a One to One Relationshop with Profiles; owner field.
-- Has a ForeignKey relationship with Followers; owner and followed feilds.
+- Has a One to One relationship with Profiles; owner field.
+- Has a ForeignKey relationship with Followers; owner and followed fields.
 - Has a ForeignKey relationship with Posts; owner field.
 - Has a ForeignKey relationship with Comments; owner field.
 - Has a ForeignKey relationship with Likes; owner field.
@@ -85,10 +85,10 @@ The User Model comes installed with the Django AllAuth Library and is used to co
 - [PyCodeStyle](https://pypi.org/project/pycodestyle/) - Used to validate the Python code.
 - [Python](https://www.python.org/) - Code written in python.
 - [Django REST Framework](https://www.django-rest-framework.org/) used for the creation of the API.
-- [Django AllAuth](https://django-allauth.readthedocs.io/en/latest/index.html) used for user authenticaion/creation.
+- [Django AllAuth](https://django-allauth.readthedocs.io/en/latest/index.html) used for user authentication/creation.
 
 ## Validation and Testing
-### PyCodeStyle Valdidation
+### PyCodeStyle Validation
 All Python Code has been checked using the [PyCodeStyle](https://pypi.org/project/pycodestyle/) library. All code has been returned with no errors.
 
 <details><summary>All .py files</summary>
@@ -141,7 +141,7 @@ As an Owner, I can log into the admin console, so that I can moderate the conten
 
 ## Deployment
 The Nexus DRF uses Cloudinary to host images, Heroku to host the website and ElephantSQL to host the database.
-The deployment process for this appliction are as followed:
+The deployment process for this application is as followed:
 1. Create an account or Log into [ElephantSQL](https://www.elephantsql.com/).
 2. Create New Instance
 3. Select a plan, name and region.
@@ -149,7 +149,7 @@ The deployment process for this appliction are as followed:
 5. Find the recently created instance on the dashboard, click onto this and find the URL section and make a note of this.
 6. Create an account or Log into [Heroku](https://dashboard.heroku.com/).
 7. Click New > Create new app, and select the correct region for this to be hosted > Create App.
-8. Once created, Navigate to the setings tab, and enter a new Config Var called DATABASE_URL, paste in the URL from ElephantSQL. (No Quotation marks)
+8. Once created, Navigate to the settings tab, and enter a new Config Var called DATABASE_URL, paste in the URL from ElephantSQL. (No Quotation marks)
 9. Add the new DATABASE_URL to your env.py file.
 10. Within the project terminal, run `pip3 install dj_database_url==0.5.0 psycopg2`.
 11. Navigate to settings.py and add `import dj_database_url` underneath `import os`.
@@ -167,8 +167,8 @@ else:
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }`
 
-13. Ensure to comment out the `DEV` enviroment variable to ensure connection to the new database, add a print statement to confirm.
-14. Make a dry run as a test of the connection to the database, if successfull make migrations `python3 manage.py migrate`
+13. Ensure to comment out the `DEV` environment variable to ensure connection to the new database, add a print statement to confirm.
+14. Make a dry run as a test of the connection to the database, if successful make migrations `python3 manage.py migrate`
 15. Install gunicorn for heroku deployment `pip3 install gunicorn django-cors-headers`.
 16. Update the requirements.txt file `pip3 freeze --local > requirements.txt`.
 17. Create `Procfile` and add the following code:
@@ -194,10 +194,10 @@ web: gunicorn drf_api.wsgi`.
 30. Enjoy!
 
 The following steps can be followed to clone the project:
-1. Navigte to GitHub and login to your account.
+1. Navigate to GitHub and login to your account.
 2. Navigate to the repository you wish to clone.
-3. Under the green 'Code' dropdown, select your preffered cloning option.
-4. On your machine, please navigte either to your editor / cmd / terminal.
+3. Under the green 'Code' dropdown, select your preferred cloning option.
+4. On your machine, please navigate either to your editor / cmd / terminal.
 5. Ensure your directory is changes to the location you wish to clone the project.
 6. In the terminal type git clone and followed by the URL you selected earlier.
 7. The project will be cloned to the location chosen.
@@ -207,7 +207,7 @@ The following steps can be followed to clone the project:
 I learnt how to create this project using the code from my course with Code Institute. 
 [Moments DRF](https://github.com/Code-Institute-Solutions/drf-api)
 
-- [Custome Exception Handling](https://www.youtube.com/watch?v=WUMEAZWM5xE&ab_channel=CryceTruly) - Used to broadedn my knowledge on exception handling.
+- [Custome Exception Handling](https://www.youtube.com/watch?v=WUMEAZWM5xE&ab_channel=CryceTruly) - Used to broaden my knowledge on exception handling.
 
 ### Images
 - [Default User Image](https://pixabay.com/vectors/blank-profile-picture-mystery-man-973460/) by [WandererCreative](https://pixabay.com/users/wanderercreative-855399/)
