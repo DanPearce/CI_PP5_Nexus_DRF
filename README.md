@@ -14,14 +14,17 @@ The Nexus DRF API has been built for the purposes of providing data to the Nexus
 2. [Database and Models](#database-and-models)
 3. [Technologies](#technologies)
 4. [Validation and Testing](#validation-and-testing)
-5. [Credits](#credits)
-6. [Acknowlegements](#acknowlegements)
+5. [Deployment](#deployment)
+6. [Credits](#credits)
+7. [Acknowlegements](#acknowlegements)
 
 ## User Stories
-The DRF API has only one user story as the live API is only used for administration purposes.
+The DRF API has only two user stories as the live API is only used for administration purposes for the front end application.
 
 1. USER STORY 3: User Authentication - Admin Moderation
   - As an Owner, I can log into the admin console, so that I can moderate the content on the site.
+2. USER STORY 24: User Interactivity – Filter#
+  - As a Owner, I can filter posts/profiles, so that I can find the content that I need.
 
 ## Database & Models
 ### Database
@@ -96,45 +99,54 @@ All Python Code has been checked using the [PyCodeStyle](https://pypi.org/projec
 #### Manual Testing
 As an Owner, I can log into the admin console, so that I can moderate the content on the site.
 
-| **Test** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+| **USER STORY 1** | **User Action** | **Desired Outcome** | **Actual Outcome** |
 |------------------|-----------------|---------------------|--------------------|
 | User | Create, edit and delete | Admin is able to create, edit and delete a new user (Which makes a user profile). | Works as intended. |
 |<details><summary>User Create</summary><img src="docs/testing/testing_user_1.png"></details> <details><summary>User Create</summary><img src="docs/testing/testing_user_2.png"></details> | | | |
 
-| **Test** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+| **USER STORY 1** | **User Action** | **Desired Outcome** | **Actual Outcome** |
 |------------------|-----------------|---------------------|--------------------|
 | User | Change user permissions | Admin is able to edit permissions for a user. | Works as intended. |
 | <details><summary>User Permissions</summary><img src="docs/testing/testing_permissons.png"></details> | | | |
 
-| **Test** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+| **USER STORY 1** | **User Action** | **Desired Outcome** | **Actual Outcome** |
 |------------------|-----------------|---------------------|--------------------|
 | Profiles | Create and delete | Admin is able to create and delete a Profile. | Works as intended. |
 | <details><summary>Profiles Edit</summary><img src="docs/testing/testing_edit_profile.png"></details> <details><summary>Profiles Delete</summary><img src="docs/testing/testing_delete_profile_1.png"></details> <details><summary>Profiles Delete</summary><img src="docs/testing/testing_delete_profile_2.png"></details> <details><summary>Profiles Delete</summary><img src="docs/testing/testing_delete_profile_3.png"></details> | | | |
 
-| **Test** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+| **USER STORY 1** | **User Action** | **Desired Outcome** | **Actual Outcome** |
 |------------------|-----------------|---------------------|--------------------|
 | Posts | Create, edit and delete | Admin is able to create, edit and delete a post. | Works as intended. |
 | <details><summary>Posts Create</summary><img src="docs/testing/testing_add_post.png"></details> <details><summary>Posts Edit</summary><img src="docs/testing/testing_edit_post.png"></details> <details><summary>Posts Delete</summary><img src="docs/testing/testing_deleting_post_1.png"></details> <details><summary>Posts Delete</summary><img src="docs/testing/testing_deleting_post_2.png"></details> <details><summary>Posts Delete</summary><img src="docs/testing/testing_deleting_post_3.png"></details> | | | |
 
-| **Test** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+| **USER STORY 1** | **User Action** | **Desired Outcome** | **Actual Outcome** |
 |------------------|-----------------|---------------------|--------------------|
 | Comments | Create and delete | Admin is able to create, edit and delete a comment. | Works as intended. |
 | <details><summary>Comments Create</summary><img src="docs/testing/testing_add_comment_1.png"></details> <details><summary>Comments Create</summary><img src="docs/testing/testing_add_comment_2.png"></details> <details><summary>Comments Delete</summary><img src="docs/testing/testing_delete_comment_1.png"></details> <details><summary>Comments Delete</summary><img src="docs/testing/testing_delete_comment_2.png"></details> <details><summary>Comments Delete</summary><img src="docs/testing/testing_delete_comment_3.png"></details> | | | |
 
-| **Test** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+| **USER STORY 1** | **User Action** | **Desired Outcome** | **Actual Outcome** |
 |------------------|-----------------|---------------------|--------------------|
 | Likes | Create and delete | Admin is able to create and delete a like. | Works as intended. |
 | <details><summary>Likes Create</summary><img src="docs/testing/testing_add_like_1.png"></details> <details><summary>Likes Create</summary><img src="docs/testing/testing_add_like_2.png"></details> <details><summary>Likes Delete</summary><img src="docs/testing/testing_delete_comment_1.png"></details><details><summary>Likes Delete</summary><img src="docs/testing/testing_delete_comment_2.png"></details><details><summary>Likes Delete</summary><img src="docs/testing/testing_delete_comment_3.png"></details> | | | |
 
-| **Test** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+| **USER STORY 1** | **User Action** | **Desired Outcome** | **Actual Outcome** |
 |------------------|-----------------|---------------------|--------------------|
 | Followers | Create and delete | Admin is able to create delete a new follower. | Works as intended. |
 | <details><summary>Followers Create</summary><img src="docs/testing/testing_add_follower_1.png"></details> <details><summary>Followers Create</summary><img src="docs/testing/testing_add_follower_2.png"></details><details><summary>Followers Delete</summary><img src="docs/testing/testing_delete_follower_1.png"></details> <details><summary>Followers Delete</summary><img src="docs/testing/testing_delete_follower_2.png"></details><details><summary>Followers Delete</summary><img src="docs/testing/testing_delete_follower_3.png"></details> | | | |
+
+| **USER STORY 24** | **User Action** | **Desired Outcome** | **Actual Outcome** |
+|-------------------|-----------------|---------------------|--------------------|
+| Filter | Use the search or filter option in the admin console. | Admin is able to filter content. | Works as intended. |
+| <details><summary>Filter 1</summary><img src="docs/testing/user-story-24-1.png"></details><details><summary>Filter 2</summary><img src="docs/testing/user-story-24-2.png"></details><details><summary>Filter 3</summary><img src="docs/testing/user-story-24-3.png"></details> | | | |
+
+## Deployment
 
 ## Credits
 ### Code
 I learnt how to create this project using the code from my course with Code Institute. 
 [Moments DRF](https://github.com/Code-Institute-Solutions/drf-api)
+
+- [Custome Exception Handling](https://www.youtube.com/watch?v=WUMEAZWM5xE&ab_channel=CryceTruly) - Used to broadedn my knowledge on exception handling.
 
 ### Images
 - [Default User Image](https://pixabay.com/vectors/blank-profile-picture-mystery-man-973460/) by [WandererCreative](https://pixabay.com/users/wanderercreative-855399/)
