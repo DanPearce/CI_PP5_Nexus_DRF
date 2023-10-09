@@ -140,6 +140,67 @@ As an Owner, I can log into the admin console, so that I can moderate the conten
 | <details><summary>Filter 1</summary><img src="docs/testing/user-story-24-1.png"></details><details><summary>Filter 2</summary><img src="docs/testing/user-story-24-2.png"></details><details><summary>Filter 3</summary><img src="docs/testing/user-story-24-3.png"></details> | | | |
 
 ## Deployment
+The Nexus DRF uses Cloudinary to host images, Heroku to host the website and ElephantSQL to host the database.
+The deployment process for this appliction are as followed:
+1. Create an account or Log into [ElephantSQL](https://www.elephantsql.com/).
+2. Create New Instance
+3. Select a plan, name and region.
+4. Review the plan and Create Instance.
+5. Find the recently created instance on the dashboard, click onto this and find the URL section and make a note of this.
+6. Create an account or Log into [Heroku](https://dashboard.heroku.com/).
+7. Click New > Create new app, and select the correct region for this to be hosted > Create App.
+8. Once created, Navigate to the setings tab, and enter a new Config Var called DATABASE_URL, paste in the URL from ElephantSQL. (No Quotation marks)
+9. Add the new DATABASE_URL to your env.py file.
+10. Within the project terminal, run `pip3 install dj_database_url==0.5.0 psycopg2`.
+11. Navigate to settings.py and add `import dj_database_url` underneath `import os`.
+12. Add the following code to settings.py 
+
+`if 'DEV' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }`
+
+13. Ensure to comment out the `DEV` enviroment variable to ensure connection to the new database, add a print statement to confirm.
+14. Make a dry run as a test of the connection to the database, if successfull make migrations `python3 manage.py migrate`
+15. Install gunicorn for heroku deployment `pip3 install gunicorn django-cors-headers`.
+16. Update the requirements.txt file `pip3 freeze --local > requirements.txt`.
+17. Create `Procfile` and add the following code:
+`release: python manage.py makemigrations && python manage.py migrate 
+web: gunicorn drf_api.wsgi`.
+18. In Heroku, find the app URL for the live application and copy, then add this to settings.py under `ALLOWED_HOSTS`.
+19. Add `corsheaders` to INSTALLED_APPS and add `   corsheaders.middleware.CorsMiddleware
+` to the top of MIDDLEWARE.
+20. Under MIDDLEWARE add the following code:
+`if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN')
+     ]`
+21. Under the existing JWT code add `JWT_AUTH_SAMESITE = 'None'`
+22. Ensure the secret key is hidden in evy.py and replace with `SECRET_KEY = os.environ.get('SECRET_KEY')` 
+23. Ensure the DEBUG value is added to env.py and replace with the following code `DEBUG = 'DEV' in os.environ`
+24. Set value of DEBUG to '0' in env.py
+25. Update the requirements.txt file `pip3 freeze --local > requirements.txt`.
+26. Commit and Push all code.
+27. In the Heroku app, open settings and ensure `SECRET_KEY` and `CLOUDINARY_URL` from env.py have been added as Config vars
+28. Open the deploy tab, and connect with the GitHub repository, under manual deploy, deploy.
+29. Wait for all changes to be made.
+30. Enjoy!
+
+The following steps can be followed to clone the project:
+1. Navigte to GitHub and login to your account.
+2. Navigate to the repository you wish to clone.
+3. Under the green 'Code' dropdown, select your preffered cloning option.
+4. On your machine, please navigte either to your editor / cmd / terminal.
+5. Ensure your directory is changes to the location you wish to clone the project.
+6. In the terminal type git clone and followed by the URL you selected earlier.
+7. The project will be cloned to the location chosen.
 
 ## Credits
 ### Code
