@@ -5,7 +5,7 @@ Serializers for followers
 from .models import Follower
 # -----------------------------------------------------------------------
 # Third Party
-from django.db import IntegrityError
+from django.db import IntegrityError, transaction
 from rest_framework import serializers
 
 
@@ -27,7 +27,9 @@ class FollowerSerializer(serializers.ModelSerializer):
         Function to handle duplication of follows.
         """
         try:
-            return super().create(validated_data)
+            # own savepoint, so a duplicate does not leave an enclosing transaction unusable
+            with transaction.atomic():
+                return super().create(validated_data)
         except IntegrityError:
             raise serializers.ValidationError({
                 'detail': 'Possible duplicate follow.'

@@ -1,5 +1,5 @@
 # Nexus DRF API
-Developed by, [Dan Pearce](https://danpearce.software/)
+Developed by, [Dan Pearce](https://danielpearce.co.uk/)
 
 [View the live application](https://nexus-api.danielpearce.co.uk/)
 
@@ -94,6 +94,16 @@ All Python Code has been checked using the [PyCodeStyle](https://pypi.org/projec
 <details><summary>All .py files</summary>
 <img src="docs/nexus_drf/nexus_drf_validation.png">
 </details>
+
+### Automated tests (November 2026)
+The API has automated tests for the welcome route, registration, the login cookies, logout, CORS, and for posts, comments,
+likes, followers and profiles (public reading, sign-in to write, only the owner can change or delete, duplicate likes and
+follows are refused). They run against a local SQLite database, no other setup needed:
+
+```
+pip install -r requirements.txt
+SECRET_KEY=test python manage.py test
+```
 
 ### Testing 
 #### Manual Testing
