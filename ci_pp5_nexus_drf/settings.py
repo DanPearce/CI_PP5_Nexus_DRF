@@ -68,7 +68,7 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-danpearce-cipp5nexusdrf-tmdpsrw47lo.ws-eu86.gitpod.io',
-    'https://ci-pp5-nexus-drf-danpearce.herokuapp.com'
+    'https://nexus-api.danielpearce.co.uk'
     ]
 
 
