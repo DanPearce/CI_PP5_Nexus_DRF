@@ -4,12 +4,15 @@ Views for nexus_drf
 # Imports
 # -----------------------------------------------------------------------
 # Third Party
+from django.conf import settings
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .settings import (
-    JWT_AUTH_COOKIE, JWT_AUTH_REFRESH_COOKIE, JWT_AUTH_SAMESITE,
-    JWT_AUTH_SECURE
-)
+
+# Cookie names and flags come from the REST_AUTH setting (dj-rest-auth)
+JWT_AUTH_COOKIE = settings.REST_AUTH['JWT_AUTH_COOKIE']
+JWT_AUTH_REFRESH_COOKIE = settings.REST_AUTH['JWT_AUTH_REFRESH_COOKIE']
+JWT_AUTH_SAMESITE = settings.REST_AUTH['JWT_AUTH_SAMESITE']
+JWT_AUTH_SECURE = settings.REST_AUTH['JWT_AUTH_SECURE']
 
 
 @api_view()
