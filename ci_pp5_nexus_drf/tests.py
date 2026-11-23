@@ -51,6 +51,22 @@ class RootAndAuthTests(APITestCase):
         self.assertEqual(user.status_code, 200)
         self.assertEqual(user.json()['username'], 'alice')
 
+    def test_login_response_has_the_shape_the_front_end_reads(self):
+        # The Nexus front end reads data.user after signing in. dj-rest-auth 7 names the tokens "access" and
+        # "refresh" and keeps the refresh token only in the HttpOnly cookie (the body field is empty).
+        User.objects.create_user('alice', password=PASSWORD)
+        response = self.client.post('/dj-rest-auth/login/', {'username': 'alice', 'password': PASSWORD})
+        body = response.json()
+        self.assertEqual(set(body), {'access', 'refresh', 'user'})
+        self.assertTrue(body['access'])
+        self.assertEqual(body['refresh'], '')
+        self.assertTrue(response.cookies[REFRESH_COOKIE].value)
+        self.assertIn('profile_id', body['user'])
+        # the refresh cookie is enough to get a new access token
+        refreshed = self.client.post('/dj-rest-auth/token/refresh/')
+        self.assertEqual(refreshed.status_code, 200)
+        self.assertTrue(refreshed.json()['access'])
+
     def test_wrong_password_is_rejected(self):
         User.objects.create_user('alice', password=PASSWORD)
         response = self.client.post('/dj-rest-auth/login/', {'username': 'alice', 'password': PASSWORD + 'x'})
