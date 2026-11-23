@@ -1,11 +1,11 @@
 # Nexus DRF API
 Developed by, [Dan Pearce](https://danpearce.software/)
 
-[View the live application](https://ci-pp5-nexus-drf-danpearce.herokuapp.com/)
+[View the live application](https://nexus-api.danielpearce.co.uk/)
 
 The Nexus DRF API has been built for the purposes of providing data to the Nexus application. The API project has been built using the Django REST Framework.
 
-[View the live Nexus application here](https://ci-pp5-nexus-danpearce.herokuapp.com/)
+[View the live Nexus application here](https://nexus.danielpearce.co.uk/)
 
 [View the Nexus GitHub page here](https://github.com/DanPearce/CI_PP5_Nexus)
 
@@ -140,6 +140,8 @@ As an Owner, I can log into the admin console, so that I can moderate the conten
 | <details><summary>Filter 1</summary><img src="docs/testing/user-story-24-1.png"></details><details><summary>Filter 2</summary><img src="docs/testing/user-story-24-2.png"></details><details><summary>Filter 3</summary><img src="docs/testing/user-story-24-3.png"></details> | | | |
 
 ## Deployment
+
+> **Hosting update (November 2026):** the live site no longer runs on Heroku. It is now self-hosted on my own server (Docker containers behind Caddy, with PostgreSQL where needed). The Heroku steps below describe the original deployment and are kept as a record.
 The Nexus DRF uses Cloudinary to host images, Heroku to host the website and ElephantSQL to host the database.
 The deployment process for this application is as followed:
 1. Create an account or Log into [ElephantSQL](https://www.elephantsql.com/).
