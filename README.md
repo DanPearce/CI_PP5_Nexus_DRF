@@ -1,11 +1,11 @@
 # Nexus DRF API
-Developed by, [Dan Pearce](https://danpearce.software/)
+Developed by, [Dan Pearce](https://danielpearce.co.uk/)
 
-[View the live application](https://ci-pp5-nexus-drf-danpearce.herokuapp.com/)
+[View the live application](https://nexus-api.danielpearce.co.uk/)
 
 The Nexus DRF API has been built for the purposes of providing data to the Nexus application. The API project has been built using the Django REST Framework.
 
-[View the live Nexus application here](https://ci-pp5-nexus-danpearce.herokuapp.com/)
+[View the live Nexus application here](https://nexus.danielpearce.co.uk/)
 
 [View the Nexus GitHub page here](https://github.com/DanPearce/CI_PP5_Nexus)
 
@@ -95,6 +95,16 @@ All Python Code has been checked using the [PyCodeStyle](https://pypi.org/projec
 <img src="docs/nexus_drf/nexus_drf_validation.png">
 </details>
 
+### Automated tests (November 2026)
+The API has automated tests for the welcome route, registration, the login cookies, logout, CORS, and for posts, comments,
+likes, followers and profiles (public reading, sign-in to write, only the owner can change or delete, duplicate likes and
+follows are refused). They run against a local SQLite database, no other setup needed:
+
+```
+pip install -r requirements.txt
+SECRET_KEY=test python manage.py test
+```
+
 ### Testing 
 #### Manual Testing
 As an Owner, I can log into the admin console, so that I can moderate the content on the site.
@@ -140,6 +150,8 @@ As an Owner, I can log into the admin console, so that I can moderate the conten
 | <details><summary>Filter 1</summary><img src="docs/testing/user-story-24-1.png"></details><details><summary>Filter 2</summary><img src="docs/testing/user-story-24-2.png"></details><details><summary>Filter 3</summary><img src="docs/testing/user-story-24-3.png"></details> | | | |
 
 ## Deployment
+
+> **Hosting update (November 2026):** the live site no longer runs on Heroku. It is now self-hosted on my own server (Docker containers behind Caddy, with PostgreSQL where needed). The Heroku steps below describe the original deployment and are kept as a record.
 The Nexus DRF uses Cloudinary to host images, Heroku to host the website and ElephantSQL to host the database.
 The deployment process for this application is as followed:
 1. Create an account or Log into [ElephantSQL](https://www.elephantsql.com/).
