@@ -25,7 +25,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: Check the project and run the tests
         env:
-          DEV: "1"
+          DATABASE_URL: sqlite:///ci.sqlite3
           ALLOWED_HOST: localhost
           CLIENT_ORIGIN: http://localhost:3000
         run: |
