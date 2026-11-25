@@ -78,7 +78,7 @@ The User Model comes installed with the Django AllAuth Library and is used to co
 - [GitHub](https://github.com/) Used to host my code.
 - [GitPod](https://www.gitpod.io/) Used to build my code online.
 - [VS Code](https://code.visualstudio.com) - Used occasionally to build the code offline.
-- [Heroku](https://dashboard.heroku.com/) - Used to host the live version of the site.
+- [Heroku](https://dashboard.heroku.com/) - Originally used to host the live version of the site (it is now self-hosted, see Deployment).
 - [Psycopg2](https://www.psycopg.org/docs/) Used to create the database on the development version of the site.
 - [ElephantSQL](https://www.elephantsql.com/) - Used to host the database for the live site.
 - [DB Diagram.io](https://dbdiagram.io/) - Used to create the diagrams used for the models.
@@ -150,6 +150,17 @@ As an Owner, I can log into the admin console, so that I can moderate the conten
 | <details><summary>Filter 1</summary><img src="docs/testing/user-story-24-1.png"></details><details><summary>Filter 2</summary><img src="docs/testing/user-story-24-2.png"></details><details><summary>Filter 3</summary><img src="docs/testing/user-story-24-3.png"></details> | | | |
 
 ## Deployment
+
+### Current hosting and automatic deployment (since November 2026)
+
+The live site is at <https://nexus-api.danielpearce.co.uk/>. It runs in a Docker container on a self-hosted server behind HTTPS.
+
+- Every pull request is checked by GitHub Actions (`.github/workflows/ci-deploy.yml`): the Django system check and the automated tests.
+- Every change merged to `main` that passes the checks is **deployed automatically**. GitHub connects to the server over SSH with a key that can deploy only this project and only the latest commit of `main`; the server builds the new version, waits for the site to answer, and puts the previous version back (and emails an alert) if anything fails. For this database-backed project the server also takes a backup first and runs the database migrations before switching over.
+- `main` is protected: no force-pushes or deleting the branch, and the `test` check must pass before changes are merged.
+- To deploy a change: merge a pull request into `main`. To redeploy, re-run the workflow in the repository's Actions tab.
+
+The steps below describe how the project was first deployed and are kept as a record of the original deployment.
 
 > **Hosting update (November 2026):** the live site no longer runs on Heroku. It is now self-hosted on my own server (Docker containers behind Caddy, with PostgreSQL where needed). The Heroku steps below describe the original deployment and are kept as a record.
 The Nexus DRF uses Cloudinary to host images, Heroku to host the website and ElephantSQL to host the database.
