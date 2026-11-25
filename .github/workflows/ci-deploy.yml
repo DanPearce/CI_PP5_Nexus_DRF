@@ -1,0 +1,61 @@
+name: CI and deploy
+
+# Every pull request is tested. Every push to main that passes the tests is deployed to the server (see the server-ops repository,
+# docs/guides/11-auto-deploy.md). Public repository: GitHub-hosted runners are free, and no self-hosted runner is ever attached to it.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Check the project and run the tests
+        env:
+          DATABASE_URL: sqlite:///ci.sqlite3
+          ALLOWED_HOST: localhost
+          CLIENT_ORIGIN: http://localhost:3000
+        run: |
+          export SECRET_KEY="$(openssl rand -hex 24)"
+          export CLOUDINARY_URL="cloudinary://ci:$(openssl rand -hex 8)@ci"
+          python manage.py check
+          python manage.py test
+
+  deploy:
+    needs: test
+    # Only pushes to main (never pull requests, never forks) reach the server.
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    environment: production
+    concurrency:
+      group: deploy-nexus-api
+      cancel-in-progress: false
+    steps:
+      - name: Deploy this commit to the server
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+          DEPLOY_HOST_KEY: ${{ vars.DEPLOY_HOST_KEY }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          umask 077
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          printf '%s %s\n' "$DEPLOY_HOST" "$DEPLOY_HOST_KEY" > ~/.ssh/known_hosts
+          # The server only accepts this key for "nexus-api" and only a 40-character commit id; it deploys it only if it is the tip of main.
+          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes \
+              -o ServerAliveInterval=30 -o ServerAliveCountMax=40 "portfolio-deploy@${DEPLOY_HOST}" "$GITHUB_SHA"
